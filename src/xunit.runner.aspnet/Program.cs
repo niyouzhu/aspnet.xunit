@@ -202,7 +202,7 @@ namespace Xunit.Runner.Dnx
         {
             Console.WriteLine("Copyright (C) 2015 Outercurve Foundation.");
             Console.WriteLine();
-            Console.WriteLine("usage: xunit.runner.dnx [configFile.json] [options] [reporter] [resultFormat filename [...]]");
+            Console.WriteLine("usage: xunit.runner.aspnet [configFile.json] [options] [reporter] [resultFormat filename [...]]");
             Console.WriteLine();
             Console.WriteLine("Valid options:");
             Console.WriteLine("  -nologo                : do not show the copyright message");

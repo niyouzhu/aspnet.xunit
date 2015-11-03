@@ -4,9 +4,9 @@
         "dnxcore50": { }
     },
     "dependencies": {
-        "xunit.runner.dnx": ""
+        "xunit.runner.aspnet": ""
     },
     "commands": {
-        "test": "xunit.runner.dnx"
+        "test": "xunit.runner.aspnet"
     }
 }
