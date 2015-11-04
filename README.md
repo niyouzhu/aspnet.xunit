@@ -9,10 +9,11 @@ To install this package, ensure your project.json contains the following lines:
 ```JSON
 {
     "dependencies": {
-        "xunit.runner.aspnet": "2.0.0-aspnet-*"
+        "xunit": "2.1.0-*",
+        "xunit.runner.dnx": "2.1.0-*"
     },
     "commands": {
-        "test": "xunit.runner.aspnet"
+        "test": "xunit.runner.dnx"
     }
 }
 ```
@@ -23,6 +24,13 @@ To run tests from the command line, use the following.
 # Restore NuGet packages
 dnu restore
 
-# Run tests (add "--project" with a folder path if tests are not in the current directory)
+# Run tests in current directory
 dnx test
+
+# Run tests if tests are not in the current directory
+dnx -p path/to/project test
 ```
+
+### More Information
+
+For more complete example usage, please see [Getting Started with xUnit.net and DNX / ASP.NET 5](http://xunit.github.io/docs/getting-started-dnx.html).

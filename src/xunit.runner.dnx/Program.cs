@@ -8,11 +8,11 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Microsoft.Extensions.Compilation;
-using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Dnx.Testing.Abstractions;
+using Microsoft.Extensions.Compilation;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
 using Xunit.Abstractions;
 using VsTestCase = Microsoft.Dnx.Testing.Abstractions.Test;
 
@@ -68,6 +68,7 @@ namespace Xunit.Runner.Dnx
 #if !DNXCORE50
                 AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 #endif
+
                 Console.CancelKeyPress += (sender, e) =>
                 {
                     if (!cancel)
@@ -77,7 +78,6 @@ namespace Xunit.Runner.Dnx
                         e.Cancel = true;
                     }
                 };
-
 
                 var defaultDirectory = Directory.GetCurrentDirectory();
                 if (!defaultDirectory.EndsWith(new String(new[] { Path.DirectorySeparatorChar })))
@@ -100,6 +100,7 @@ namespace Xunit.Runner.Dnx
                     Console.WriteLine("Test host services not passed for design time run");
                     return -1;
                 }
+
                 logger = new ConsoleRunnerLogger(!commandLine.NoColor);
                 reporterMessageHandler = commandLine.Reporter.CreateMessageHandler(logger);
 

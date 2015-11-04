@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if ! [ -x "$(command -v mono)" ]; then
+  echo >&2 "Could not find 'mono' on the path."
+  exit 1
+fi
+
 if test `uname` = Darwin; then
     cachedir=~/Library/Caches/KBuild
 else
@@ -29,15 +34,32 @@ if test ! -d packages/Sake; then
     mono .nuget/nuget.exe install Sake -ExcludeVersion -Source https://www.nuget.org/api/v2/ -Out packages
 fi
 
+echo ""
+echo "Installing .NET Execution Environment..."
+echo ""
+
 if ! type dnvm > /dev/null 2>&1; then
     source packages/KoreBuild/build/dnvm.sh
 fi
 
 if ! type dnx > /dev/null 2>&1 || [ -z "$SKIP_DNX_INSTALL" ]; then
     dnvm install latest -runtime coreclr -alias default
+    if [ $? -ne 0 ]; then
+        echo >&2 ".NET Execution Environment installation has failed."
+        exit 1
+    fi
+
     dnvm install default -runtime mono -alias default
+    if [ $? -ne 0 ]; then
+        echo >&2 ".NET Execution Environment installation has failed."
+        exit 1
+    fi
 else
     dnvm use default -runtime mono
 fi
+
+echo ""
+echo "Building packages..."
+echo ""
 
 mono packages/Sake/tools/Sake.exe -I packages/KoreBuild/build -f makefile.shade "$@"
