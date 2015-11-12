@@ -1,4 +1,4 @@
-﻿{
+{
     "authors": [ "James Newkirk", "Brad Wilson" ],
     "title": "xUnit.net [Runner: DNX / DNX Core]",
     "description": "Console and Visual Studio runner for xUnit.net.\r\n\r\nSupported platforms:\r\n- DNX 4.5.1+\r\n- DNX Core 5+\r\nForked from https://github.com/xunit/dnx.xunit",
@@ -22,9 +22,9 @@
         },
         "dnxcore50": {
             "dependencies": {
-                "System.Security.Cryptography.Algorithms": "4.0.0-beta-*",
-                "System.Threading.ThreadPool": "4.0.10-beta-*",
-                "System.Xml.XDocument": "4.0.11-beta-*"
+                "System.Security.Cryptography.Algorithms": "4.0.0-*",
+                "System.Threading.ThreadPool": "4.0.10-*",
+                "System.Xml.XDocument": "4.0.11-*"
             }
         }
     },
