@@ -1,43 +1,46 @@
-﻿{
-    "authors": [ "James Newkirk", "Brad Wilson" ],
-    "title": "xUnit.net [Runner: DNX / DNX Core]",
-    "description": "Console and Visual Studio runner for xUnit.net.\r\n\r\nSupported platforms:\r\n- DNX 4.5.1+\r\n- DNX Core 5+\r\nForked from https://github.com/xunit/dnx.xunit",
-    "projectUrl": "https://github.com/aspnet/aspnet.xunit",
-    "iconUrl": "https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png",
-    "licenseUrl": "https://raw.githubusercontent.com/xunit/xunit/master/license.txt",
-    "requireLicenseAcceptance": false,
-    "version": "2.0.0-aspnet-*",
-    "compilationOptions": {
-        "warningsAsErrors": true
+{
+  "authors": [
+    "James Newkirk",
+    "Brad Wilson"
+  ],
+  "title": "xUnit.net [Runner: DNX / DNX Core]",
+  "description": "Console and Visual Studio runner for xUnit.net.\r\n\r\nSupported platforms:\r\n- DNX 4.5.1+\r\n- DNX Core 5+\r\nForked from https://github.com/xunit/dnx.xunit",
+  "projectUrl": "https://github.com/aspnet/aspnet.xunit",
+  "iconUrl": "https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png",
+  "licenseUrl": "https://raw.githubusercontent.com/xunit/xunit/master/license.txt",
+  "requireLicenseAcceptance": false,
+  "version": "2.0.0-aspnet-rc1-final",
+  "compilationOptions": {
+    "warningsAsErrors": true
+  },
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Collections": "",
+        "System.Threading": "",
+        "System.Xml": "",
+        "System.Xml.Linq": "",
+        "System.Xml.XDocument": ""
+      }
     },
-    "frameworks": {
-        "dnx451": {
-            "frameworkAssemblies": {
-                "System.Collections": "",
-                "System.Threading": "",
-                "System.Xml": "",
-                "System.Xml.Linq": "",
-                "System.Xml.XDocument": ""
-            }
-        },
-        "dnxcore50": {
-            "dependencies": {
-                "System.Xml.XDocument": "4.0.11-beta-*",
-                "System.Security.Cryptography.Algorithms": "4.0.0-beta-*",
-                "System.Threading.ThreadPool": "4.0.10-beta-*"
-            }
-        }
-    },
-    "dependencies": {
-        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
-        "Microsoft.Dnx.Testing.Abstractions": "1.0.0-*",
-        "Microsoft.Dnx.TestHost": "1.0.0-*",
-        "xunit.assert": "2.1.0-*",
-        "xunit.extensibility.execution": "2.1.0-*",
-        "xunit.runner.reporters": "2.1.0-*"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/aspnet/aspnet.xunit"
+    "dnxcore50": {
+      "dependencies": {
+        "System.Xml.XDocument": "4.0.11-beta-23516",
+        "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+        "System.Threading.ThreadPool": "4.0.10-beta-23516"
+      }
     }
+  },
+  "dependencies": {
+    "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
+    "Microsoft.Dnx.Testing.Abstractions": "1.0.0-rc1-final",
+    "Microsoft.Dnx.TestHost": "1.0.0-rc1-final",
+    "xunit.assert": "2.1.0-*",
+    "xunit.extensibility.execution": "2.1.0-*",
+    "xunit.runner.reporters": "2.1.0-*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aspnet/aspnet.xunit"
+  }
 }
