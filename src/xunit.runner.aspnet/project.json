@@ -32,6 +32,7 @@
         "Microsoft.Dnx.Testing.Abstractions": "1.0.0-*",
         "Microsoft.Dnx.TestHost": "1.0.0-*",
         "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
+        "Microsoft.Extensions.PlatformAbstractions.Dnx": "1.0.0-*",
         "xunit.assert": "2.1.0",
         "xunit.extensibility.execution": "2.1.0",
         "xunit.runner.reporters": "2.1.0"

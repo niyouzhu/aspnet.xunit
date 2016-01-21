@@ -32,7 +32,7 @@ namespace Xunit.Runner.Dnx
         {
             testHostServices = hostServices;
             appEnv = PlatformServices.Default.Application;
-            libraryManager = PlatformServices.Default.LibraryManager;
+            libraryManager = DnxPlatformServices.Default.LibraryManager;
         }
 
         [STAThread]
