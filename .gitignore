@@ -89,3 +89,5 @@ UpgradeLog*.htm
 *.pidb
 *.*sdf
 *.ipch
+.testPublish/
+.build/
