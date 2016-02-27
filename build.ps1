@@ -1,40 +1,36 @@
-param(
-    [string]$target = "Test",
-    [string]$verbosity = "minimal",
-    [int]$maxCpuCount = 0
-)
+cd $PSScriptRoot
 
-# Kill all MSBUILD.EXE processes because they could very likely have a lock against our
-# MSBuild runner from when we last ran unit tests.
-get-process -name "msbuild" -ea SilentlyContinue | %{ stop-process $_.ID -force }
+$repoFolder = $PSScriptRoot
+$env:REPO_FOLDER = $repoFolder
 
-$msbuilds = @(get-command msbuild -ea SilentlyContinue)
-if ($msbuilds.Count -gt 0) {
-    $msbuild = $msbuilds[0].Definition
-}
-else {
-    if (test-path "env:\ProgramFiles(x86)") {
-        $path = join-path ${env:ProgramFiles(x86)} "MSBuild\14.0\bin\MSBuild.exe"
-        if (test-path $path) {
-            $msbuild = $path
-        }
-    }
-    if ($msbuild -eq $null) {
-        $path = join-path $env:ProgramFiles "MSBuild\14.0\bin\MSBuild.exe"
-        if (test-path $path) {
-            $msbuild = $path
-        }
-    }
-    if ($msbuild -eq $null) {
-        throw "MSBuild could not be found in the path. Please ensure MSBuild v14 (from Visual Studio 2015) is in the path."
-    }
+$koreBuildZip="https://github.com/aspnet/KoreBuild/archive/dev.zip"
+if ($env:KOREBUILD_ZIP)
+{
+    $koreBuildZip=$env:KOREBUILD_ZIP
 }
 
-if ($maxCpuCount -lt 1) {
-    $maxCpuCountText = $Env:MSBuildProcessorCount
-} else {
-    $maxCpuCountText = ":$maxCpuCount"
+$buildFolder = ".build"
+$buildFile="$buildFolder\KoreBuild.ps1"
+
+if (!(Test-Path $buildFolder)) {
+    Write-Host "Downloading KoreBuild from $koreBuildZip"    
+    
+    $tempFolder=$env:TEMP + "\KoreBuild-" + [guid]::NewGuid()
+    New-Item -Path "$tempFolder" -Type directory | Out-Null
+
+    $localZipFile="$tempFolder\korebuild.zip"
+    
+    Invoke-WebRequest $koreBuildZip -OutFile $localZipFile
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($localZipFile, $tempFolder)
+    
+    New-Item -Path "$buildFolder" -Type directory | Out-Null
+    copy-item "$tempFolder\**\build\*" $buildFolder -Recurse
+
+    # Cleanup
+    if (Test-Path $tempFolder) {
+        Remove-Item -Recurse -Force $tempFolder
+    }
 }
 
-$allArgs = @("dnx.xunit.proj", "/m$maxCpuCountText", "/nologo", "/verbosity:$verbosity", "/t:$target", $args)
-& $msbuild $allArgs
+&"$buildFile" $args
