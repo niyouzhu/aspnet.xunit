@@ -1,4 +1,4 @@
-#if !DNXCORE50
+#if !NETSTANDARDAPP1_5
 
 using System;
 using System.IO;
