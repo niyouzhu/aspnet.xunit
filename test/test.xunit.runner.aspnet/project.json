@@ -1,17 +1,14 @@
 {
   "dependencies": {
     "xunit": "2.1.0",
-    "xunit.runner.aspnet": "2.0.0-aspnet-*"
+    "xunit.runner.aspnet": "2.0.0-aspnet-*",
   },
   "frameworks": {
-    "netstandardapp1.5": {
+    "dnxcore50": {
       "dependencies": {
         "dotnet-test-xunit": "1.0.0-dev-*"
       },
-      "imports": [
-        "dnxcore50",
-        "portable-net451+win8"
-      ]
+      "imports": "portable-net451+win8"
     }
   },
   "testRunner": "xunit"
